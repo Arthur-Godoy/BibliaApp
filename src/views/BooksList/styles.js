@@ -1,6 +1,10 @@
 import styled from 'styled-components/native';
 import { View, Text } from 'react-native';
 
+export const Container = styled.View`
+    background-color: ${props => props.theme.bg};
+`;
+
 export const Book = styled.View`
   border-bottom: 1px solid gray;
   align-items: center;
