@@ -2,23 +2,31 @@ import React, {useState, useEffect} from 'react';
 import {FlatList, Text, View, TouchableHighlight} from 'react-native';
 import {Versicle, Box, VersicleNum, Empty, Container} from './styles';
 import {useNavigation} from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const VersicleList = ({route}) => {
   const navigation = useNavigation();
   const {versicles} = route.params;
   const [arr, setArr] = useState([]);
+  const storeData = async data => {
+    try {
+      await AsyncStorage.setItem('versicle', data);
+    } catch (e) {
+      alert(e);
+    }
+  };
 
   useEffect(() => {
     let temparr = [];
     let addEmpty = 0;
 
-    versicles.length % 4 === 0
-      ? (addEmpty = versicles.length)
-      : (addEmpty = versicles.length + (4 - (versicles.length % 4)));
+    versicles % 4 === 0
+      ? (addEmpty = versicles)
+      : (addEmpty = versicles + (4 - (versicles % 4)));
 
     for (let i = 0; i < addEmpty; i++) {
       let txt = i + 1;
-      i >= versicles.length
+      i >= versicles
         ? temparr.push({id: i, text: ''})
         : temparr.push({id: i, text: txt.toString()});
     }
@@ -44,9 +52,9 @@ const VersicleList = ({route}) => {
                 <TouchableHighlight
                   onPress={() => {
                     navigation.navigate('Leitura', {
-                      textArr: versicles,
-                      selected: item.text,
+                      versicleSelected: item.text,
                     });
+                    storeData(item.text);
                   }}>
                   <Versicle>
                     <VersicleNum>{item.text}</VersicleNum>

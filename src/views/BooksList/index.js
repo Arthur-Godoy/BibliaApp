@@ -22,7 +22,8 @@ const BookList = () => {
             <TouchableHighlight
               onPress={() => {
                 navigation.navigate('Capitulo', {
-                  chapters: item.chapters,
+                  abbrev: item.abbrev,
+                  chapters: item.chapters
                 });
               }}>
               <Book>

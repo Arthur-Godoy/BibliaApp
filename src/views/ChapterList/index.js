@@ -2,16 +2,25 @@ import React, {useState, useEffect} from 'react';
 import {FlatList, Text, TouchableHighlight} from 'react-native';
 import {Chapter, ChapterBox, ChapterNum, Container, Empty} from './styles';
 import {useNavigation} from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const ChapterList = ({route}) => {
   const navigation = useNavigation();
-  const {chapters} = route.params;
+  const {chapters, abbrev} = route.params;
   const [arr, setArr] = useState([]);
+  
+  const storeData = async (key, data) => {
+    try {
+      await AsyncStorage.setItem(key, data);
+    } catch (e) {
+      alert('erro ao setar dados');
+    }
+  };
 
   useEffect(() => {
     let temparr = [];
     let addEmpty = 0;
-
+    console.log('opa')
     chapters.length % 4 === 0
       ? (addEmpty = chapters.length)
       : (addEmpty = chapters.length + (4 - (chapters.length % 4)));
@@ -44,8 +53,10 @@ const ChapterList = ({route}) => {
                 <TouchableHighlight
                   onPress={() => {
                     navigation.navigate('Versiculo', {
-                      versicles: chapters[item.text - 1],
+                      versicles: chapters[item.text - 1].length,
                     });
+                    storeData('chapter', item.text);
+                    storeData('book', abbrev);
                   }}>
                   <Chapter>
                     <ChapterNum>{item.text}</ChapterNum>

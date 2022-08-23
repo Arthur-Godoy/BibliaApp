@@ -7,6 +7,17 @@ export const Container = styled.ScrollView`
   background-color: ${props => props.theme.bg};
 `;
 
+export const TopBarContainer = styled.View`
+  padding: 10px;
+  flex-direction: row;
+  background-color: ${props => props.theme.bg};
+`;
+
+export const MiddleButtons = styled.View`
+  margin-left: 16%;
+  flex-direction: row;
+`;
+
 export const VersicleContainer = styled.View`
   flex: 1;
   flex-direction: row;
@@ -16,5 +27,5 @@ export const VersicleContainer = styled.View`
 `;
 
 export const Versicle = styled.Text`
-  font-size: 18px;
+  font-size: ${props => props.theme.font};
 `;
