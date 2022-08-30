@@ -1,8 +1,9 @@
 import React from 'react';
 import {AbbrevIcon, Book, Name, Container} from './styles';
 import aa from '../../data/aa.json';
-import {FlatList, Text, TouchableHighlight} from 'react-native';
+import {FlatList, Text} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import {Pressable} from '@react-native-material/core';
 
 const BookList = () => {
   const navigation = useNavigation();
@@ -19,7 +20,7 @@ const BookList = () => {
             ? (abbrev[0] = abbrev[0].toLocaleUpperCase())
             : (abbrev[1] = abbrev[1].toLocaleUpperCase());
           return (
-            <TouchableHighlight
+            <Pressable
               onPress={() => {
                 navigation.navigate('Capitulo', {
                   abbrev: item.abbrev,
@@ -32,7 +33,7 @@ const BookList = () => {
                 </AbbrevIcon>
                 <Name>{item.name}</Name>
               </Book>
-            </TouchableHighlight>
+            </Pressable>
           );
         }}
       />

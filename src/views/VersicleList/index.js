@@ -1,8 +1,15 @@
 import React, {useState, useEffect} from 'react';
-import {FlatList, Text, View, TouchableHighlight} from 'react-native';
-import {Versicle, Box, VersicleNum, Empty, Container} from './styles';
+import {FlatList, Text} from 'react-native';
+import {
+  Content,
+  ContentBox,
+  Num,
+  Container,
+  Empty,
+} from '../../../globalStyles';
 import {useNavigation} from '@react-navigation/native';
-import AsyncStorage from '@react-native-async-storage/async-storage'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {Pressable} from '@react-native-material/core';
 
 const VersicleList = ({route}) => {
   const navigation = useNavigation();
@@ -48,19 +55,19 @@ const VersicleList = ({route}) => {
             );
           } else {
             return (
-              <Box>
-                <TouchableHighlight
+              <ContentBox>
+                <Pressable
                   onPress={() => {
                     navigation.navigate('Leitura', {
                       versicleSelected: item.text,
                     });
                     storeData(item.text);
                   }}>
-                  <Versicle>
-                    <VersicleNum>{item.text}</VersicleNum>
-                  </Versicle>
-                </TouchableHighlight>
-              </Box>
+                  <Content>
+                    <Num>{item.text}</Num>
+                  </Content>
+                </Pressable>
+              </ContentBox>
             );
           }
         }}

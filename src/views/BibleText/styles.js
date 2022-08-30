@@ -1,10 +1,13 @@
 import styled from 'styled-components/native';
-import {ScrollView, Text} from 'react-native';
+import {Button} from '@react-native-material/core';
 
-export const Container = styled.ScrollView`
-  text-align: center;
-  height: 100%;
+export const Buttao = styled.Button`
+  width: 100px;
   background-color: ${props => props.theme.bg};
+  border: 1px solid ${props => props.theme.colorFont};
+  color: ${props => props.theme.colorFont};
+  border-radius: 10px;
+  margin-right: 5px;
 `;
 
 export const TopBarContainer = styled.View`
@@ -26,6 +29,18 @@ export const VersicleContainer = styled.View`
   margin-left: 10px;
 `;
 
-export const Versicle = styled.Text`
-  font-size: ${props => props.theme.font};
+export const ListButton = styled.Pressable`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px 20px 10px 20px;
+  background-color: ${props => props.theme.bg};
+`;
+
+export const MenuTitle = styled.Text`
+  padding: 20px 20px 10px 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: ${props => props.theme.colorFont}
 `;

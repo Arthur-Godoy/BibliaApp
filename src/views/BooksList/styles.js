@@ -2,11 +2,10 @@ import styled from 'styled-components/native';
 import { View, Text } from 'react-native';
 
 export const Container = styled.View`
-    background-color: ${props => props.theme.bg};
+  background-color: ${props => props.theme.bg};
 `;
 
 export const Book = styled.View`
-  border-bottom: 1px solid gray;
   align-items: center;
   flex-grow: 1;
   margin: 5px;
@@ -15,8 +14,8 @@ export const Book = styled.View`
 `;
 
 export const Name = styled.Text`
-  font-size: 18px;
-  color: white;
+  font-size: ${props => props.theme.font};
+  color: ${props => props.theme.colorFont};
 `;
 
 export const AbbrevIcon = styled.View`
