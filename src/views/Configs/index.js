@@ -5,10 +5,28 @@ import {Container} from './../../../globalStyles';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 import {Txt} from './../../../globalStyles';
 import {View} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+const getData = async key => {
+  try {
+    let value = await AsyncStorage.getItem(key)
+    if (value !== null) {
+      return value;
+    }
+  } catch (e) {
+    alert(e);
+  }
+};
 
 const Configs = props => {
   const [font, setFont] = useState('');
 
+  useEffect(() =>{
+    getData('font').then(res => {
+      res === null ? setFont('18') : setFont(res);
+    });
+  },[])
+  
   return (
     <Container>
       <MenuTitle>Configurações:</MenuTitle>

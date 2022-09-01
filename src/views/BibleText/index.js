@@ -75,14 +75,14 @@ const BibleText = ({route}) => {
         duration: 200,
         useNativeDriver: true,
       }).start();
-    } else if (direction === 'down') {
+    } else if (direction === 'down' && offsetY > 10) {
       Animated.timing(searchBarAnim, {
         toValue: -55,
         duration: 200,
         useNativeDriver: true,
       }).start();
     }
-  }, [offsetY]);
+  }, [direction]);
 
   useEffect(() => {
     setVariables();
@@ -180,7 +180,7 @@ const BibleText = ({route}) => {
               let x = 0;
               let dif = offsetY - e.nativeEvent.contentOffset.y;
               dif = dif * Math.sign(dif);
-              dif > 40 &&
+              dif > 55 &&
                 (setOffsetY(e.nativeEvent.contentOffset.y),
                 (x = e.nativeEvent.contentOffset.y > offsetY ? 'down' : 'up'),
                 setDirection(x),
