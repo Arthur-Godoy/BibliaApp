@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import React from 'react';
 import {useState, useEffect} from 'react';
 import {ThemeProvider} from 'styled-components';
@@ -8,7 +9,7 @@ import BookList from './src/views/BooksList/index';
 import ChapterList from './src/views/ChapterList/index';
 import VersicleList from './src/views/VersicleList/index';
 import BibleText from './src/views/BibleText/index';
-import {set} from 'react-native-reanimated';
+import Configs from './src/views/Configs';
 
 const App = () => {
   const [theme, setTheme] = useState({});
@@ -24,6 +25,14 @@ const App = () => {
       }
     } catch (e) {
       alert('Erro ao guardar os dados', e);
+    }
+  };
+
+  const storeData = async (key, data) => {
+    try {
+      await AsyncStorage.setItem(key, data);
+    } catch (e) {
+      alert('erro ao setar dados');
     }
   };
 
@@ -47,14 +56,15 @@ const App = () => {
     } else {
       setTheme({font: font + 'px', bg: '#EFFFFD', colorFont: '#191a24'});
     }
-    console.log(usrtheme);
   }, [font, usrtheme]);
 
   const changeFont = data => {
+    storeData('font', String(data));
     setFont(data);
   };
 
   const changeTheme = data => {
+    storeData('theme', String(data));
     setUsrTheme(data);
   };
 
@@ -71,9 +81,9 @@ const App = () => {
             options={{
               headerShown: false,
             }}
+            initialParams={{changeFont, changeTheme, usrtheme}}
             name="Leitura"
             component={BibleText}
-            initialParams={{changeFont, changeTheme}}
           />
           <Stack.Screen name="Livro" component={BookList} />
           <Stack.Screen name="Capitulo" component={ChapterList} />

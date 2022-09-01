@@ -1,5 +1,4 @@
 import styled from 'styled-components/native';
-import {Button} from '@react-native-material/core';
 
 export const Buttao = styled.Button`
   width: 100px;
@@ -27,20 +26,4 @@ export const VersicleContainer = styled.View`
   margin: 5px 0px;
   width: 95%;
   margin-left: 10px;
-`;
-
-export const ListButton = styled.Pressable`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 10px 20px 10px 20px;
-  background-color: ${props => props.theme.bg};
-`;
-
-export const MenuTitle = styled.Text`
-  padding: 20px 20px 10px 10px;
-  font-size: 18px;
-  font-weight: bold;
-  color: ${props => props.theme.colorFont}
 `;
