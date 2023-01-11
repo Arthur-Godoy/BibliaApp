@@ -197,7 +197,9 @@ const BibleText = ({route}) => {
                       const layout = event.nativeEvent.layout;
                       layoutYArr[num] = layout.y;
                       setLayoutYArr(layoutYArr);
-                      scrollToVersicle();
+                      if (versicle == layoutYArr.length - 2) {
+                        scrollToVersicle();
+                      }
                     }}>
                     <Versicle>{'   ' + num + '  ' + txt}</Versicle>
                   </VersicleContainer>

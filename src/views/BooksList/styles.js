@@ -1,8 +1,13 @@
 import styled from 'styled-components/native';
 import { View, Text } from 'react-native';
+import { Pressable } from '@react-native-material/core';
 
 export const Container = styled.View`
   background-color: ${props => props.theme.bg};
+`;
+
+export const NewTestment = styled.View`
+  background-color: rgba(96, 96, 96, 0.1);
 `;
 
 export const Book = styled.View`
